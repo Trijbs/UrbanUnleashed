@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Unleashed - Pop-Up Store</title>
+  <link rel="icon" href="logo.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light: #fff;
+      --text-light: #111;
+      --bg-dark: #111;
+      --text-dark: #fff;
+      --accent: orange;
+      --accent-hover: #ff9900;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Urbanist', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      scroll-behavior: smooth;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease;
+    }
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .loader .dot {
+      width: 15px;
+      height: 15px;
+      margin: 0 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: bounce 0.6s infinite alternate;
+    }
+    .loader .dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .loader .dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    @keyframes bounce {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-15px);
+      }
+    }
+    header {
+      background: url('https://i.postimg.cc/x8wTbqrt/image.jpg') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: rgb(255, 255, 255);
+      text-align: center;
+      padding: 1rem;
+      position: relative;
+    }
+    .navbar {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .navbar img {
+      height: 40px;
+      width: auto;
+      border-radius: 8px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .navbar img:hover {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
+    header h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    }
+    .btn {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      margin-top: 2rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: var(--accent-hover);
+    }
+    section {
+      padding: 4rem 1.5rem;
+    }
+    .highlight {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+      padding: 2rem;
+      border-radius: 10px;
+      margin-bottom: 4rem;
+      transition: transform 0.3s;
+    }
+    .highlight:hover {
+      transform: translateY(-5px);
+    }
+    .ups, h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .products, .usp {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .product, .usp-item {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      transition: box-shadow 0.3s, background 0.3s, color 0.3s;
+    }
+    body.dark-mode .product,
+    body.dark-mode .usp-item {
+      background: #222;
+      color: var(--text-dark);
+      border-color: #333;
+    }
+    body.dark-mode .product:hover, body.dark-mode .usp-item:hover {
+      background: var(--bg-light);
+      color: var(--text-light);
+    }
+    .product:hover, .usp-item:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    body.dark-mode .highlight {
+      background: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    footer {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+      text-align: center;
+      padding: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      header h1 {
+        font-size: 4rem;
+      }
+      .products, .usp {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+      section {
+        padding: 5rem 10%;
+      }
+    }
+    .toggle-mode {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body onload="setTimeout(() => document.querySelector('.loader').classList.add('hidden'), 1800)">
+  <div class="loader">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+  <button class="toggle-mode" onclick="document.body.classList.toggle('dark-mode')">🌙 / ☀️</button>
+
+  <header>
+    <div class="navbar">
+      <img src="logo.png" alt="Urban Unleashed logo">
+    </div>
+    <h1>Urban Unleashed</h1>
+    <p>Skate. Spray. Unleash.</p>
+    <a href="#shop" class="btn">Ontdek de Pop-Up</a>
+  </header>
+
+  <section id="usp">
+    <h2>Waarom Urban Unleashed?</h2>
+    <div class="usp">
+      <div class="usp-item">
+        <h3>Unieke Stijl</h3>
+        <p>Limited edition gear, ontworpen door lokale artiesten en skaters.</p>
+      </div>
+      <div class="usp-item">
+        <h3>Live Events</h3>
+        <p>Skate demo’s, graffiti battles en DJ-sets. Be part of the action.</p>
+      </div>
+      <div class="usp-item">
+        <h3>Community First</h3>
+        <p>Gemaakt voor en door creatives. Connect, inspire, unleash.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="shop">
+    <h2>Wat kun je scoren?</h2>
+    <div class="products">
+      <div class="product">
+        <h3>Skate Decks</h3>
+        <p>Unieke ontwerpen door lokale artiesten en illustratoren</p>
+      </div>
+      <div class="product">
+        <h3>Streetwear</h3>
+        <p>Hoodies, beanies & tees vol karakter</p>
+      </div>
+      <div class="product">
+        <h3>Graffiti Kits</h3>
+        <p>Spraycans, markers & blackbooks ready to go</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="highlight">
+      <h2>📍 Locatie</h2>
+      <p>Geheime locatie in de stad — wordt onthuld via onze AR-map! Volg de hints op TikTok & Instagram om erbij te zijn.</p>
+    </div>
+    <div class="highlight">
+      <h2>🗓️ Opening Day</h2>
+      <p>Live op zaterdag 17 mei — met special guests, live art en de vetste tricks.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Urban Unleashed © 2025 — All rights tagged & sprayed</p>
+    <a href="https://www.instagram.com/urbanunleashed/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://www.tiktok.com/@urbanunleashed" target="_blank" rel="noopener noreferrer">TikTok</a>
+  </footer>
+</body>
+</html>
