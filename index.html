@@ -70,6 +70,50 @@
         transform: translateY(-15px);
       }
     }
+    .topbar {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.5rem;
+      overflow: hidden;
+      position: relative;
+      z-index: 1001;
+      text-align: center;
+    }
+
+    .slider {
+      display: flex;
+      animation: scrollText 20s infinite;
+      gap: 2rem;
+    }
+
+    .slide {
+      min-width: 100%;
+      opacity: 0;
+      animation: fadeSlide 30s infinite;
+      font-weight: bold;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+
+    @keyframes scrollText {
+      0% { transform: translateX(0%); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0%); }
+    }
+
+    @keyframes fadeSlide {
+      0%, 33.3%, 66.6%, 100% { opacity: 0; }
+      10%, 30% { opacity: 1; }
+      43.3%, 63.3% { opacity: 1; }
+      76.6%, 96.6% { opacity: 1; }
+    }
+
+    body.dark-mode .topbar {
+      background: var(--accent-hover);
+      color: #111;
+    }
+
     header {
       background: url('https://i.postimg.cc/x8wTbqrt/image.jpg') center/cover no-repeat;
       height: 95vh;
@@ -189,7 +233,7 @@
     }
     .toggle-mode {
       position: fixed;
-      top: 1rem;
+      top: 3rem;
       right: 1rem;
       background: var(--accent);
       color: #fff;
@@ -208,7 +252,14 @@
     <div class="dot"></div>
   </div>
   <button class="toggle-mode" onclick="document.body.classList.toggle('dark-mode')">🌙 / ☀️</button>
-
+  <div class="topbar">
+    <div class="slider">
+      <div class="slide">🎉 Urban Unleashed opent op 17 mei! Mis het niet!</div>
+      <div class="slide">📍 Locatie onthuld via AR-map & TikTok-hints</div>
+      <div class="slide">💥 Limited merch — alleen in de pop-up store</div>
+    </div>
+  </div>
+  
   <header>
     <div class="navbar">
       <img src="https://i.postimg.cc/tTgfGHS5/logo.png" alt="Urban Unleashed logo">
