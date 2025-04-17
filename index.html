@@ -102,61 +102,61 @@
     }
     
     .menu-toggle {
-  position: fixed;
-  top: 3rem;
-  right: 1rem;
-  z-index: 1100;
-  background: var(--accent);
-  border: none;
-  padding: 0.6rem 1rem;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1.2rem;
-}
+      position: fixed;
+      top: 3rem;
+      right: 1rem;
+      z-index: 1100;
+      background: var(--accent);
+      border: none;
+      padding: 0.6rem 1rem;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
 
-.menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.5);
-  z-index: 1099;
-  display: none;
-}
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      z-index: 1099;
+      display: none;
+    }
 
-.menu {
-  position: fixed;
-  top: 0;
-  right: -300px;
-  width: 250px;
-  height: 100vh;
-  background: var(--bg-dark);
-  color: var(--text-dark);
-  z-index: 1101;
-  padding: 2rem;
-  box-shadow: -4px 0 12px rgba(0,0,0,0.2);
-  transition: right 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
+    .menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 250px;
+      height: 100vh;
+      background: var(--bg-dark);
+      color: var(--text-dark);
+      z-index: 1101;
+      padding: 2rem;
+      box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+      transition: right 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
 
-.menu.open {
-  right: 0;
-}
+    .menu.open {
+      right: 0;
+    }
 
-.menu a {
-  color: var(--text-dark);
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.1rem;
-  transition: color 0.2s;
-}
-.menu a:hover {
-  color: var(--accent-hover);
-}
+    .menu a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+    }
+    .menu a:hover {
+      color: var(--accent-hover);
+    }
 
     body.dark-mode .topbar {
       background: var(--accent-hover);
@@ -262,14 +262,14 @@ body.dark-mode #product-showcase {
 
 .showcase-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .product-card {
-  background: #fff;
+  background: var(--accent);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -283,7 +283,7 @@ body.dark-mode .product-card {
 
 .product-card img {
   width: 100%;
-  height: 200px;
+  height: 300px;
   object-fit: cover;
 }
 
@@ -471,17 +471,17 @@ body.dark-mode .product-card {
     <h2 style="text-align:center; margin-bottom: 2rem;">Products</h2>
     <div class="showcase-grid">
       <div class="product-card">
-        <img src="https://i.postimg.cc/6p1sf3Zn/skateboard-mockup-37789-434.jpg" alt="Skate Deck">
+        <img src="https://i.postimg.cc/cH7ChPBw/skateboard-mockup-37789-434-removebg-preview.png" alt="Skate Deck">
         <h3>OG Skate Decks</h3>
         <p>Authentiek deck, met street art print. Beperkte oplage.</p>
       </div>
       <div class="product-card">
-        <img src="https://i.postimg.cc/sDGyH5VK/Screenshot-2025-04-17-at-13-16-50.png" alt="Hoodie">
+        <img src="https://i.postimg.cc/zv0BZWMf/Chat-GPT-Image-17-apr-2025-12-53-28-removebg-preview.png" alt="Hoodie">
         <h3>Hoodies</h3>
         <p>Soft, gritty en dripping in style. Met het exclusieve logo.</p>
       </div>
       <div class="product-card">
-        <img src="https://i.postimg.cc/vmZGzkDx/Screenshot-2025-04-17-at-13-21-19.png" alt="Graffiti Kit">
+        <img src="https://i.postimg.cc/cCsHbTFj/Screenshot-2025-04-17-at-13-21-19-removebg-preview.png" alt="Graffiti Kit">
         <h3>Graffiti Mystery boxes</h3>
         <p>Markers, cans & blackbook – unleash je inner rebel.</p>
       </div>
