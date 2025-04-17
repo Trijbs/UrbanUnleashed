@@ -12,8 +12,8 @@
       --text-light: #111;
       --bg-dark: #111;
       --text-dark: #fff;
-      --accent: orange;
-      --accent-hover: #ff9900;
+      --accent: #ef4425;
+      --accent-hover: #1dde82;
     }
     * {
       box-sizing: border-box;
@@ -63,12 +63,8 @@
       animation-delay: 0.4s;
     }
     @keyframes bounce {
-      from {
-        transform: translateY(0);
-      }
-      to {
-        transform: translateY(-15px);
-      }
+      from { transform: translateY(0); }
+      to { transform: translateY(-15px); }
     }
     .topbar {
       background: var(--accent);
@@ -79,44 +75,97 @@
       z-index: 1001;
       text-align: center;
     }
-
     .slider {
       display: flex;
-      animation: scrollText 20s infinite;
+      animation: scrollText 30s infinite;
       gap: 2rem;
     }
-
     .slide {
       min-width: 100%;
       opacity: 0;
-      animation: fadeSlide 30s infinite;
+      animation: fadeSlide 60s infinite;
       font-weight: bold;
       font-size: 1rem;
       white-space: nowrap;
     }
-
     @keyframes scrollText {
       0% { transform: translateX(0%); }
       33% { transform: translateX(-100%); }
       66% { transform: translateX(-200%); }
       100% { transform: translateX(0%); }
     }
-
     @keyframes fadeSlide {
       0%, 33.3%, 66.6%, 100% { opacity: 0; }
       10%, 30% { opacity: 1; }
       43.3%, 63.3% { opacity: 1; }
       76.6%, 96.6% { opacity: 1; }
     }
+    
+    .menu-toggle {
+  position: fixed;
+  top: 3rem;
+  right: 1rem;
+  z-index: 1100;
+  background: var(--accent);
+  border: none;
+  padding: 0.6rem 1rem;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 1099;
+  display: none;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 250px;
+  height: 100vh;
+  background: var(--bg-dark);
+  color: var(--text-dark);
+  z-index: 1101;
+  padding: 2rem;
+  box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+  transition: right 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.menu.open {
+  right: 0;
+}
+
+.menu a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+.menu a:hover {
+  color: var(--accent-hover);
+}
 
     body.dark-mode .topbar {
       background: var(--accent-hover);
       color: #111;
     }
-
     header {
-      background: url('https://i.postimg.cc/x8wTbqrt/image.jpg') center/cover no-repeat;
-      height: 95vh;
+      background: url('https://i.postimg.cc/7P7xkr8y/Chat-GPT-Image-16-apr-2025-18-10-59.pngqRjLD') center/cover no-repeat fixed;
+      height: 90vh;
+      opacity: 80%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -125,6 +174,12 @@
       text-align: center;
       padding: 1rem;
       position: relative;
+      animation: glitch 8s infinite;
+    }
+    @keyframes glitch {
+      0% { filter: hue-rotate(0deg) contrast(1); }
+      50% { filter: hue-rotate(20deg) contrast(1.2) brightness(1.1); }
+      100% { filter: hue-rotate(0deg) contrast(1); }
     }
     .navbar {
       position: absolute;
@@ -135,14 +190,14 @@
       gap: 1rem;
     }
     .navbar img {
-      height: 70px;
+      height: 120px;
       width: auto;
       border-radius: 10px;
       transition: transform 0.3s ease, filter 0.3s ease;
     }
     .navbar img:hover {
-      transform: scale(1.1);
-      filter: brightness(1.2);
+      transform: scale(1.4);
+      filter: brightness(1.5);
     }
     header h1 {
       font-size: 3rem;
@@ -197,6 +252,88 @@
       text-align: center;
       transition: box-shadow 0.3s, background 0.3s, color 0.3s;
     }
+    #product-showcase {
+  padding: 4rem 1.5rem;
+  background: #f7f7f7;
+}
+body.dark-mode #product-showcase {
+  background: #1a1a1a;
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+body.dark-mode .product-card {
+  background: #333;
+  color: #fff;
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.product-card p {
+  padding: 0 1rem 1rem;
+  font-size: 0.95rem;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+.product-card {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  text-align: center;
+  z-index: 0;
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(255,69,0,0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(25px);
+}
+
+.product-card:hover::before {
+  opacity: 1;
+}
+
+.product-card:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+
     body.dark-mode .product,
     body.dark-mode .usp-item {
       background: #222;
@@ -233,7 +370,7 @@
     }
     .toggle-mode {
       position: fixed;
-      top: 3rem;
+      top: 40rem;
       right: 1rem;
       background: var(--accent);
       color: #fff;
@@ -259,16 +396,41 @@
       <div class="slide">💥 Limited merch — alleen in de pop-up store</div>
     </div>
   </div>
-  
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+<div class="menu-overlay" onclick="toggleMenu()"></div>
+<nav class="menu" id="slideMenu">
+  <a href="#usp">Waarom?</a>
+  <a href="#shop">Shop</a>
+  <a href="#products">Products</a>
+  <a href="#locatie">Locatie</a>
+  <a href="https://www.instagram.com/urbanunleashed/" target="_blank">Instagram</a>
+  <a href="https://www.tiktok.com/@urbanunleashed" target="_blank">TikTok</a>
+</nav>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('slideMenu');
+    const overlay = document.querySelector('.menu-overlay');
+    const isOpen = menu.classList.contains('open');
+    if (isOpen) {
+      menu.classList.remove('open');
+      overlay.style.display = 'none';
+    } else {
+      menu.classList.add('open');
+      overlay.style.display = 'block';
+    }
+  }
+</script>
+
   <header>
     <div class="navbar">
-      <img src="https://i.postimg.cc/tTgfGHS5/logo.png" alt="Urban Unleashed logo">
+      <img src="https://i.postimg.cc/fbWDNV73/image-2025-04-16-165256447.png" alt="Urban Unleashed logo">
     </div>
     <h1>Urban Unleashed</h1>
     <p>Unleash the Street in You.</p>
     <a href="#shop" class="btn">Ontdek de Pop-Up</a>
   </header>
-
   <section id="usp">
     <h2>Waarom Urban Unleashed?</h2>
     <div class="usp">
@@ -305,7 +467,30 @@
     </div>
   </section>
 
-  <section>
+  <section id="products">
+    <h2 style="text-align:center; margin-bottom: 2rem;">Products</h2>
+    <div class="showcase-grid">
+      <div class="product-card">
+        <img src="https://i.postimg.cc/6p1sf3Zn/skateboard-mockup-37789-434.jpg" alt="Skate Deck">
+        <h3>OG Skate Decks</h3>
+        <p>Authentiek deck, met street art print. Beperkte oplage.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.postimg.cc/sDGyH5VK/Screenshot-2025-04-17-at-13-16-50.png" alt="Hoodie">
+        <h3>Hoodies</h3>
+        <p>Soft, gritty en dripping in style. Met het exclusieve logo.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.postimg.cc/vmZGzkDx/Screenshot-2025-04-17-at-13-21-19.png" alt="Graffiti Kit">
+        <h3>Graffiti Mystery boxes</h3>
+        <p>Markers, cans & blackbook – unleash je inner rebel.</p>
+      </div>
+    </div>
+  </section>
+  
+  
+
+  <section id="locatie">
     <div class="highlight">
       <h2>📍 Locatie</h2>
       <p>Geheime locatie in de stad — wordt onthuld via onze AR-map! Volg de hints op TikTok & Instagram om erbij te zijn.</p>
